@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My TODO</title>
+    <link rel="stylesheet" href="/main.css">
+</head>
+<body>
+
+    <div class="container">
+        <form action="/" method="post" id="form">
+        <div class="input">
+            <label for="item"> TODO list: </label>
+            <input type="text" id="itemName" name="todo">
+        </div>
+        <div class="input">
+            <label for="description"> Description: </label>
+            <input type="textarea" id="description" name="description">
+        </div>
+        <div class="addItem">
+            <button>ADD TODO</button>
+        </div>
+    </div>
+
+
+
+    <div class="inventory">
+        <h3>~ TODAY'S TODO ~</h3>
+        <table action="/" method="get" class="table">
+            <tr>
+                <th>Today's todo</th>
+                <th>Description</th>
+                <th>☒</th>
+                <th>☑</th>
+            </tr>
+            <% data.forEach(todoList => { %>
+            <tr>
+                <td><%= todoList.todo %></td>
+                <td><%= todoList.description %></td>
+                <td><form action="/delete/<%= todoList.id %>" method="post" ><button >✗</button></form></td>
+                <td><form><button action="/<%= todoList.id %>/2" method="post" id="2">✓</button></form></td>
+            </tr>
+            <% }); %>
+        </table> 
+    </div>
+
+
+
+    <!-- <div class="inventory">
+        <h3>~ TODO Done ~</h3>
+        <table action="/" method="get" class="table">
+            <tr>
+                <th>Todo</th>
+                <th>Description</th>
+            </tr>
+            <% data.forEach(todoList => { %>
+            <tr>
+                <td><%= todoList.todo %></td>
+                <td><%= todoList.description %></td>
+            </tr>
+            <% }); %>
+        </table> 
+    </div> -->
+
+    
+</body>
+</html>
