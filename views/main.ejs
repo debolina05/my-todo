@@ -35,33 +35,40 @@
                 <th>☑</th>
             </tr>
             <% data.forEach(todoList => { %>
+                <% if(!todoList.done){ %>
             <tr>
-                <td><%= todoList.todo %></td>
-                <td><%= todoList.description %></td>
-                <td><form action="/delete/<%= todoList.id %>" method="post" ><button >✗</button></form></td>
-                <td><form><button action="/<%= todoList.id %>/2" method="post" id="2">✓</button></form></td>
+                <form action="/wrong/<%= todoList.id %>" method="post">
+                    <td><%= todoList.todo %></td>
+                    <td><%= todoList.description %></td>
+                    <td><button>✗</button></td>
+                </form>
+
+                <form action="/right/<%= todoList.id %>" method="post">
+                    <td><button>✓</button></td>
+                </form>
             </tr>
+            <% } %>
             <% }); %>
         </table> 
     </div>
 
-
-
-    <!-- <div class="inventory">
+    <div class="inventory">
         <h3>~ TODO Done ~</h3>
-        <table action="/" method="get" class="table">
+        <table class="table">
             <tr>
                 <th>Todo</th>
                 <th>Description</th>
             </tr>
             <% data.forEach(todoList => { %>
+                <% if (todoList.done) { %>
             <tr>
                 <td><%= todoList.todo %></td>
                 <td><%= todoList.description %></td>
             </tr>
+            <% } %>
             <% }); %>
         </table> 
-    </div> -->
+    </div>
 
     
 </body>

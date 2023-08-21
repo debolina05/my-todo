@@ -10,6 +10,10 @@ const MyTodo = sequelize.define('mytodo',{
       type: DataTypes.STRING,
       allowNull: false,
     },
+    done: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: false, // Default value should be false
+  },
 },{
     timestamps:false
 });

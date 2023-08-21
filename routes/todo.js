@@ -6,7 +6,8 @@ const router = express.Router();
 //form add and post data
 router.get('/',todoController.getData);
 router.post('/',todoController.postData);
-router.post('/delete/:id', todoController.deleteData);
+router.post('/wrong/:id', todoController.deletedata);
+router.post('/right/:id', todoController.right);
 
 
 //404

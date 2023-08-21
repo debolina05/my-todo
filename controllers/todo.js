@@ -10,7 +10,6 @@ exports.getData = async (req,res,next)=>{
 }
 
 
-
 exports.postData = async (req,res,next) => {
     const id = req.body.id;
     const todo = req.body.todo;
@@ -36,28 +35,39 @@ exports.postData = async (req,res,next) => {
 };
 
 
-exports.deleteData = async(req, res, next) =>{
-    const todoId = req.params.id;
+exports.deletedata = async (req, res, next) => {
+    const itemId = req.params.id;
 
     try {
-        const item = await Sequelize.findByPk(todoId);
+        const item = await Sequelize.findByPk(itemId);
         if (item) {
-            await Sequelize.destroy({
-                where: {
-                  id:todoId
-                }
-            });
+            await item.destroy({where: {id:item.id}});
             res.redirect('/');
-        }else {
+        } else {
             res.status(404).send('Item not found');
         }
     } catch (err) {
         console.log(err);
         res.status(500).send('Internal Server Error');
     }
-    
 };
 
+
+exports.right = async(req, res, next) => {
+    const id = req.params.id;
+    try {
+        const item = await Sequelize.findByPk(id);
+        if (item) {
+            await item.update({ done: true }); 
+            res.redirect('/');
+        } else {
+            res.status(404).send('Item not found');
+        }
+    }catch (err) {
+        console.log(err);
+        res.status(500).send('Internal Server Error');
+    }
+}
 
 
 
